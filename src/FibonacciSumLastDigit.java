@@ -2,14 +2,29 @@ import java.util.*;
 
 public class FibonacciSumLastDigit {
     private static long getFibonacciSumNaive(long n) {
-        n = (n+2)%60;
-        long[] fibNumbers =new long[(int) (n+1)];
-        fibNumbers[0]=0;
-        fibNumbers[1]=1;
-        for(int i=2; i<fibNumbers.length; i++){
-            fibNumbers[i]=fibNumbers[i-1]+fibNumbers[i-2];
+        int findElementTillWhichToCount= (int) (n%60);
+        return addPianoPeriodToTheArray(findElementTillWhichToCount);
+    }
+
+    private static long addPianoPeriodToTheArray(int findElementTillWhichToCount){
+        List<Long> fibNumbersList=new ArrayList<>();
+        fibNumbersList.add(0L);
+        fibNumbersList.add(1L);
+        int i=0;
+        while (i < 60) {
+            long temp = fibNumbersList.get(i) % 10;
+            long temp1 = fibNumbersList.get(i + 1) % 10;
+            long add =  ((temp + temp1) % 10);
+
+            fibNumbersList.add(add);
+            i++;
         }
-        return fibNumbers[(int) n]%10-1;
+        int sum = 0;
+
+        for (int j = 0; j <= findElementTillWhichToCount; j++) {
+            sum= (int) (sum+fibNumbersList.get(j));
+        }
+        return sum%10;
 
     }
 
