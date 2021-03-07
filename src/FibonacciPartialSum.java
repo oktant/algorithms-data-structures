@@ -1,7 +1,7 @@
 import java.util.*;
 
 public class FibonacciPartialSum {
-    private static List<Long> fibNumbersList=new ArrayList<>();
+    private static final List<Long> fibNumbersList=new ArrayList<>();
 
     private static long getFibonacciPartialSumNaive(long from, long to) {
         int findElementTillWhichToCount= (int) (to%60);
